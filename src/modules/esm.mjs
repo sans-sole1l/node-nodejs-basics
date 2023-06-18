@@ -3,9 +3,6 @@ import { release, version } from "node:os";
 import { createServer as createServerHttp } from "node:http";
 import "./files/c.js";
 
-import a from "./files/a.json" assert { type: 'json' };
-import b from "./files/b.json" assert { type: 'json' };
-
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
@@ -17,9 +14,9 @@ const random = Math.random();
 let unknownObject;
 
 if (random > 0.5) {
-    unknownObject = a;
+    unknownObject = await import("./files/a.json", { assert: { type: "json" } });
 } else {
-    unknownObject = b;
+    unknownObject = await import("./files/b.json", { assert: { type: "json" } });
 }
 
 console.log(`Release ${release()}`);

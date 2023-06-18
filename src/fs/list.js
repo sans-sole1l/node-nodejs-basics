@@ -5,9 +5,8 @@ const list = async () => {
     // Write your code here 
     const dirPath = path.resolve("src/fs/files");
 
-    try {
+  try {
 		const content = await fsPromises.readdir(dirPath);
-        console.log(content);
 	} catch (err) {
 		if (err?.code === "ENOENT") {
 			throw new Error("FS operation failed");
